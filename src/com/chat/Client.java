@@ -1,12 +1,10 @@
 package com.chat;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class Client {
@@ -29,7 +27,7 @@ public class Client {
     private JTextArea clientTextArea;
     private JScrollPane scrollPane;
     private BufferedReader reader;
-    private PrintWriter writer;
+    private BufferedWriter writer;
     private String nickname;
 
     public static void main(String[] args){
@@ -71,6 +69,7 @@ public class Client {
         jPanelnorth.add(portText);
         jPanelnorth.add(connectButton);
         clientFrame.getContentPane().add(BorderLayout.NORTH, jPanelnorth);
+        IPText.setText("119.29.191.172");
 
         // 设置中间组件
         clientTextArea.setFocusable(false);
@@ -105,10 +104,10 @@ public class Client {
                 } else {
                     try {
                         Socket clientSocket = new Socket(ip, Integer.parseInt(port));
-                        InputStreamReader streamReader = new InputStreamReader(clientSocket.getInputStream());
+                        InputStreamReader streamReader = new InputStreamReader(clientSocket.getInputStream(), "UTF-8");
 
                         reader = new BufferedReader(streamReader);
-                        writer = new PrintWriter(clientSocket.getOutputStream());
+                        writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(),"UTF-8"));
 
                         clientTextArea.append("服务器连接成功...\n");
 
@@ -162,13 +161,12 @@ public class Client {
     // 监听send按钮，　往服务器传信息
     private void listenSend(){
         ActionListener sendListener = (ActionEvent event)->{
-
                 String msg = msgText.getText();
                 if (msg.equals("")){
                     JOptionPane.showMessageDialog(clientFrame, "内容不能为空");
                 } else {
                     try {
-                        writer.println(nickname + ": " + msg);
+                        writer.write(nickname + ": " + msg + "\n");
                         writer.flush();
                     } catch (Exception ex){
                         ex.printStackTrace();

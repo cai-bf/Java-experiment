@@ -55,7 +55,7 @@ public class Server {
         public ClientHandler(Socket clientSocket) {
             try {
                 socket = clientSocket;
-                InputStreamReader ireader = new InputStreamReader(socket.getInputStream());
+                InputStreamReader ireader = new InputStreamReader(socket.getInputStream(), "UTF-8");
                 reader = new BufferedReader(ireader);
             } catch (Exception e) {
                 e.printStackTrace();

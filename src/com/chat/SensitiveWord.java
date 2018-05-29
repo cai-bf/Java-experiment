@@ -68,6 +68,7 @@ public class SensitiveWord {
     }
 
     public String filter(StringBuffer str){
-        
+        String a = "test";
+        return a;
     }
 }
