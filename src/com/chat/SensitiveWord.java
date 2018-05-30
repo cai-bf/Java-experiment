@@ -2,6 +2,7 @@ package com.chat;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.StreamSupport;
 
 public class SensitiveWord {
     private String dict_path;
@@ -68,12 +69,14 @@ public class SensitiveWord {
         }
     }
 
-    /** 检查是否存在关键词并替换
-    * 尚未完全完善，某些情况下会出现识别错误的情况
+    /**
+     * 检查是否存在关键词并替换
+     * 尚未完全完善，某些情况下会出现识别错误的情况
      */
     public String filter(StringBuilder str) {
         StringBuilder temp = new StringBuilder(str);
         Map now = wordMap;
+        // System.out.println(str.charAt(2));
             for (int j = 0; j < str.length(); j++) {
                 char word = str.charAt(j);
                 Object map = now.get(word);
@@ -81,14 +84,18 @@ public class SensitiveWord {
                     now = (Map) map;
                     // 替换关键词
                     str.replace(j, j + 1, "*");
+                    System.out.println(str);
                     if (now.get("isEnd").equals("1")) {
                         now = wordMap;
                         temp = new StringBuilder(str);
                     }
                 } else {
-                    if (!now.get("isEnd").equals("1")) {
-                        str = new StringBuilder(temp);
-                    }
+                    // if语句用于避免关键词接在不完整关键词后导致的错误判断
+                    if (str.charAt(j-1) == '*')
+                        j--;
+                    str = new StringBuilder(temp);
+                    now = wordMap;
+
                 }
                 if (j == str.length()-1 && map!=null && !now.get("isEnd").equals("1")) {
                     str = new StringBuilder(temp);
@@ -104,10 +111,10 @@ public class SensitiveWord {
         String message;
         while (!(message = scanner.nextLine()).equals("")){
             StringBuilder t = new StringBuilder(message);
-            // long start = System.currentTimeMillis();
+            long start = System.currentTimeMillis();
             result =  sensitiveWord.filter(t);
-            // long end = System.currentTimeMillis();
-            System.out.println(result);
+            long end = System.currentTimeMillis();
+            System.out.println(result + (end - start));
         }
     }
 }

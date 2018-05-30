@@ -14,7 +14,7 @@ public class Server {
     private ArrayList<PrintWriter> clientOutputStream;
 
     public static void main(String[] args){
-        Server server = new Server(5558);
+        Server server = new Server(5560);
         server.start();
     }
 
