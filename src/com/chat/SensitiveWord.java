@@ -5,7 +5,7 @@ import java.util.*;
 
 public class SensitiveWord {
     private String dict_path;
-    private Set<String> words;
+    private Set<String> words = new HashSet<>();
     private static HashMap wordMap;
 
     public SensitiveWord(String path){
@@ -44,6 +44,7 @@ public class SensitiveWord {
         while (iterator.hasNext()){
             key = iterator.next();
             now = wordMap;
+            now.put("isEnd", "0");
             for (int i=0; i<key.length(); i++){
                 // 获取关键字
                 char keyChar = key.charAt(i);
@@ -67,8 +68,46 @@ public class SensitiveWord {
         }
     }
 
-    public String filter(StringBuffer str){
-        String a = "test";
-        return a;
+    /** 检查是否存在关键词并替换
+    * 尚未完全完善，某些情况下会出现识别错误的情况
+     */
+    public String filter(StringBuilder str) {
+        StringBuilder temp = new StringBuilder(str);
+        Map now = wordMap;
+            for (int j = 0; j < str.length(); j++) {
+                char word = str.charAt(j);
+                Object map = now.get(word);
+                if (map != null) {
+                    now = (Map) map;
+                    // 替换关键词
+                    str.replace(j, j + 1, "*");
+                    if (now.get("isEnd").equals("1")) {
+                        now = wordMap;
+                        temp = new StringBuilder(str);
+                    }
+                } else {
+                    if (!now.get("isEnd").equals("1")) {
+                        str = new StringBuilder(temp);
+                    }
+                }
+                if (j == str.length()-1 && map!=null && !now.get("isEnd").equals("1")) {
+                    str = new StringBuilder(temp);
+                }
+        }
+        return str.toString();
+    }
+
+    public static void main(String[] args){
+        SensitiveWord sensitiveWord = new SensitiveWord("./Words.txt");
+        Scanner scanner = new Scanner(System.in);
+        String result;
+        String message;
+        while (!(message = scanner.nextLine()).equals("")){
+            StringBuilder t = new StringBuilder(message);
+            // long start = System.currentTimeMillis();
+            result =  sensitiveWord.filter(t);
+            // long end = System.currentTimeMillis();
+            System.out.println(result);
+        }
     }
 }

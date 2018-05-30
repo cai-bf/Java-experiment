@@ -14,7 +14,7 @@ public class Server {
     private ArrayList<PrintWriter> clientOutputStream;
 
     public static void main(String[] args){
-        Server server = new Server(5557);
+        Server server = new Server(5558);
         server.start();
     }
 
@@ -66,8 +66,11 @@ public class Server {
         public void run() {
             String msg;
             try {
+                SensitiveWord sen = new SensitiveWord("./Words.txt");
                 while ((msg = reader.readLine()) != null) {
                     // System.out.println(msg);
+                    StringBuilder temp = new StringBuilder(msg);
+                    msg = sen.filter(temp);
                     broadcast(msg);
                 }
             } catch (IOException e) {
