@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21bc9613-d893-4058-affe-bd6f312d29dc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaExperiment/com/chat/SensitiveWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaExperiment/com/chat/SensitiveWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaExperiment/com/chat/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaExperiment/com/chat/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chat/SensitiveWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chat/SensitiveWord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/chat/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/chat/Server.java" afterDir="false" />
-    </list>
+    <list default="true" id="21bc9613-d893-4058-affe-bd6f312d29dc" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,8 +27,8 @@
       <file leaf-file-name="SensitiveWord.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chat/SensitiveWord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+            <state relative-caret-position="390">
+              <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -271,15 +265,15 @@
       <workItem from="1527604709539" duration="11665000" />
       <workItem from="1527673746407" duration="499000" />
       <workItem from="1527674676614" duration="945000" />
-      <workItem from="1527693095111" duration="2754000" />
+      <workItem from="1527693095111" duration="3369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33040000" />
+    <option name="totallyTimeSpent" value="33655000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
@@ -534,8 +528,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/SensitiveWord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+        <state relative-caret-position="390">
+          <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
