@@ -71,12 +71,11 @@ public class SensitiveWord {
 
     /**
      * 检查是否存在关键词并替换
-     * 尚未完全完善，某些情况下会出现识别错误的情况
+     * 尚未完全完善，不能进行敏感词隔开处理
      */
     public String filter(StringBuilder str) {
         StringBuilder temp = new StringBuilder(str);
         Map now = wordMap;
-        // System.out.println(str.charAt(2));
             for (int j = 0; j < str.length(); j++) {
                 char word = str.charAt(j);
                 Object map = now.get(word);
@@ -84,7 +83,6 @@ public class SensitiveWord {
                     now = (Map) map;
                     // 替换关键词
                     str.replace(j, j + 1, "*");
-                    System.out.println(str);
                     if (now.get("isEnd").equals("1")) {
                         now = wordMap;
                         temp = new StringBuilder(str);
@@ -103,7 +101,7 @@ public class SensitiveWord {
         }
         return str.toString();
     }
-
+    // main函数用于对过滤进行单独测试
     public static void main(String[] args){
         SensitiveWord sensitiveWord = new SensitiveWord("./Words.txt");
         Scanner scanner = new Scanner(System.in);
