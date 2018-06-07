@@ -30,10 +30,13 @@ public class Server {
                     ServerSocket serverSocket;
                     try {
                         serverSocket = new ServerSocket(port);
+                        // 监听端口，接受客户端请求
                         while (true) {
                             Socket clientSocket = serverSocket.accept();
                             PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
+                            // 将writer放进ArrayList
                             clientOutputStream.add(writer);
+                            // 开启线程
                             Thread t = new Thread(new ClientHandler(clientSocket));
                             t.start();
                         }
@@ -47,7 +50,7 @@ public class Server {
         }
     }
 
-
+    //继承runnable, 处理客户端请求
     private class ClientHandler implements Runnable {
         BufferedReader reader;
         Socket socket;
@@ -66,9 +69,9 @@ public class Server {
         public void run() {
             String msg;
             try {
-                SensitiveWord sen = new SensitiveWord("./Words.txt");
+                SensitiveWord sen = new SensitiveWord("此处填入敏感词文件"); // 文件按每个敏感词占一行的格式
                 while ((msg = reader.readLine()) != null) {
-                    // System.out.println(msg);
+
                     StringBuilder temp = new StringBuilder(msg);
                     msg = sen.filter(temp);
                     broadcast(msg);
@@ -78,6 +81,7 @@ public class Server {
             }
         }
 
+        // 广播消息.
         private void broadcast(String msg) {
             Iterator<PrintWriter> it = clientOutputStream.iterator();
             while (it.hasNext()){

@@ -53,7 +53,7 @@ public class Client {
         nicknameButton = new JButton("确认");
         msgLabel = new JLabel("消息", JLabel.LEFT);
         msgText = new JTextField(30);
-        sendButton = new JButton("确认");
+        sendButton = new JButton("发送");
     }
 
     private void setGUI(){
@@ -69,7 +69,7 @@ public class Client {
         jPanelnorth.add(portText);
         jPanelnorth.add(connectButton);
         clientFrame.getContentPane().add(BorderLayout.NORTH, jPanelnorth);
-        IPText.setText("119.29.191.172");
+        // IPText.setText("119.29.191.172");
 
         // 设置中间组件
         clientTextArea.setFocusable(false);
@@ -105,7 +105,7 @@ public class Client {
                     try {
                         Socket clientSocket = new Socket(ip, Integer.parseInt(port));
                         InputStreamReader streamReader = new InputStreamReader(clientSocket.getInputStream(), "UTF-8");
-
+                        // 设置UTF-8避免不同系统间中文乱码
                         reader = new BufferedReader(streamReader);
                         writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(),"UTF-8"));
 
